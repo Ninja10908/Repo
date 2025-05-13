@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Offline ChatGPT Clone</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 20px; }
+    #chat { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; }
+    .message { margin-bottom: 15px; }
+    .user { color: #007bff; font-weight: bold; }
+    .assistant { color: #28a745; font-weight: bold; }
+    textarea { width: 100%; height: 60px; }
+    button { margin-top: 10px; padding: 10px 15px; }
+  </style>
+</head>
+<body>
+  <div id="chat">
+    <div id="messages"></div>
+    <textarea id="input" placeholder="Ask something..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const dummyReplies = [
+      "That's an interesting question!",
+      "I'm just a demo bot, but that sounds cool!",
+      "Can you tell me more?",
+      "Let's think about that together.",
+      "Hmm, I would say... maybe!",
+      "I'm not sure, but I like where you're going with this."
+    ];
+
+    function sendMessage() {
+      const inputBox = document.getElementById("input");
+      const userText = inputBox.value.trim();
+      if (!userText) return;
+
+      const messages = document.getElementById("messages");
+      messages.innerHTML += `<div class="message"><span class="user">You:</span> ${userText}</div>`;
+
+      inputBox.value = "";
+
+      const reply = dummyReplies[Math.floor(Math.random() * dummyReplies.length)];
+      setTimeout(() => {
+        messages.innerHTML += `<div class="message"><span class="assistant">GPT:</span> ${reply}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+      }, 800);
+    }
+  </script>
+</body>
+</html>
